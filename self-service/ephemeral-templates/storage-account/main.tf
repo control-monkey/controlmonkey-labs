@@ -1,4 +1,5 @@
 terraform {
+  required_version = ">= 1.0"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -27,13 +28,11 @@ resource "azurerm_storage_account" "storage_account" {
 variable "storage_account_name" {
   description = "The name of the Storage Account to create."
   type        = string
-  default     = null
 }
 
 variable "resource_group_name" {
   description = "Name of the existing Azure Resource Group in which the Storage Account will be created."
   type        = string
-  default     = null
 }
 
 data "azurerm_resource_group" "resource_group" {

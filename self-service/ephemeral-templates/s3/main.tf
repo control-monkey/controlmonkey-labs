@@ -1,3 +1,14 @@
+terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+
 provider "aws" {
   region = "us-east-1"
 }
@@ -5,6 +16,7 @@ provider "aws" {
 #Private bucket with versioning enabled
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
+  version = "4.8.0"
 
   bucket = var.bucket_name
   acl    = "private"
@@ -14,6 +26,10 @@ module "s3_bucket" {
 
   versioning = {
     enabled = true
+  }
+
+  tags = {
+    CreatedBy = "ControlMonkey Template"
   }
 }
 
